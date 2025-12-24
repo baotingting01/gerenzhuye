@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的数字铭牌 | Web3 & AI Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- 全局设置 --- */
+        :root {
+            --metal-dark: #1a1a1a;
+            --metal-mid: #2d2d2d;
+            --metal-light: #4a4a4a;
+            --highlight: #e0e0e0;
+            --shadow: #000000;
+            /* AI/Web3 能量光色彩：青蓝色 */
+            --accent-glow: #00f2ff; 
+            --text-color: #d4d4d4;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Rajdhani', sans-serif;
+            /* 背景：深色拉丝金属纹理模拟 */
+            background-color: var(--metal-dark);
+            background-image: 
+                repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 10px),
+                linear-gradient(to bottom, #2b2b2b, #111111);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+        }
+
+        /* --- 主容器：金属铭牌 --- */
+        .container {
+            position: relative;
+            width: 90%;
+            max-width: 480px;
+            padding: 40px;
+            border-radius: 20px;
+            /* 核心金属质感：多重渐变和阴影模拟厚重感和倒角 */
+            background: linear-gradient(145deg, var(--metal-mid), var(--metal-dark));
+            box-shadow: 
+                /* 外部阴影，营造悬浮感 */
+                20px 20px 60px #0d0d0d,
+                -20px -20px 60px #272727,
+                /* 内部高光，营造金属边缘反光 */
+                inset 2px 2px 5px rgba(255,255,255,0.1),
+                inset -2px -2px 5px rgba(0,0,0,0.5);
+            border: 2px solid var(--metal-light);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* 装饰：模拟铆钉或螺丝 */
+        .screw {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #5a5a5a, #1a1a1a);
+            box-shadow: inset 1px 1px 2px rgba(255,255,255,0.2), inset -1px -1px 2px rgba(0,0,0,0.6);
+            border: 1px solid #333;
+        }
+        .tl { top: 15px; left: 15px; }
+        .tr { top: 15px; right: 15px; }
+        .bl { bottom: 15px; left: 15px; }
+        .br { bottom: 15px; right: 15px; }
+
+
+        /* --- 头像区域 --- */
+        .avatar-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            /* 金属舷窗边框 */
+            padding: 8px;
+            background: linear-gradient(145deg, var(--metal-light), var(--metal-dark));
+            box-shadow: 
+                inset 3px 3px 10px rgba(0,0,0,0.6),
+                inset -3px -3px 10px rgba(255,255,255,0.1),
+                0 0 20px var(--accent-glow); /* 能量光环 */
+            animation: glow-pulse 4s infinite alternate;
+        }
+
+        @keyframes glow-pulse {
+            0% { box-shadow: inset 3px 3px 10px rgba(0,0,0,0.6), inset -3px -3px 10px rgba(255,255,255,0.1), 0 0 15px var(--accent-glow); }
+            100% { box-shadow: inset 3px 3px 10px rgba(0,0,0,0.6), inset -3px -3px 10px rgba(255,255,255,0.1), 0 0 30px var(--accent-glow), 0 0 10px var(--accent-glow); }
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--metal-dark);
+            /* 略微降低图片饱和度以融合金属风格 */
+            filter: saturate(90%) contrast(110%);
+        }
+
+        /* --- 文本内容 --- */
+        h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            /* 文字金属雕刻感 */
+            color: var(--highlight);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7), -1px -1px 2px rgba(255,255,255,0.1);
+        }
+
+        .title-tag {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 15px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--accent-glow);
+            color: var(--accent-glow);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+        }
+
+        .bio {
+            margin: 25px 0 35px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #b0b0b0;
+            /* 模拟屏幕文字的微光 */
+            text-shadow: 0 0 2px rgba(0, 242, 255, 0.3);
+        }
+
+        /* --- 社交链接按钮 --- */
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 两列布局 */
+            gap: 20px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            /* 金属按钮质感：未按下状态 */
+            background: linear-gradient(145deg, #3a3a3a, #222222);
+            box-shadow: 
+                5px 5px 10px #151515,
+                -5px -5px 10px #353535;
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-btn i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+            transition: color 0.3s ease;
+        }
+
+        /* 按钮悬停效果：按下状态 + 能量激活 */
+        .social-btn:hover {
+            transform: translateY(2px);
+            /* 模拟按下的内阴影 */
+            box-shadow: 
+                inset 5px 5px 10px #151515,
+                inset -5px -5px 10px #353535;
+            color: var(--accent-glow);
+            border-color: var(--accent-glow);
+        }
+
+        .social-btn:hover i.fa-twitter { color: #1DA1F2; }
+        .social-btn:hover i.fa-telegram { color: #0088cc; }
+        .social-btn:hover i.fa-github { color: #ffffff; }
+        .social-btn:hover i.fa-discord { color: #5865F2; }
+        
+        /* 按钮激活时的光效扫描 */
+        .social-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to right, transparent, rgba(0, 242, 255, 0.2), transparent);
+            transform: rotate(45deg) translate(-100%, -100%);
+            transition: transform 0.6s ease;
+        }
+        .social-btn:hover::after {
+            transform: rotate(45deg) translate(100%, 100%);
+        }
+
+
+        /* 移动端适配 */
+        @media (max-width: 480px) {
+            .container {
+                width: 85%;
+                padding: 30px 20px;
+            }
+            h1 { font-size: 1.8rem; }
+            .social-links { grid-template-columns: 1fr; } /* 小屏幕改为单列 */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="screw tl"></div>
+        <div class="screw tr"></div>
+        <div class="screw bl"></div>
+        <div class="screw br"></div>
+
+        <div class="avatar-container">
+            <img src="https://via.placeholder.com/300x300.png?text=Your+Avatar" alt="我的头像" class="avatar">
+        </div>
+
+        <h1>Cypher Voyager</h1>
+        <div class="title-tag">Web3 建设者 // AI 信徒 // 好奇心驱动</div>
+
+        <p class="bio">
+            热衷于探索去中心化前沿与人工智能的交汇点。我相信代码即法律，算法即未来。永远保持好奇，在数字混沌中寻找下一个范式转移。
+        </p>
+
+        <div class="social-links">
+            <a href="https://x.com/luokebang" target="_blank" class="social-btn">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
+            <a href="https://t.me/luokebang" target="_blank" class="social-btn">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="https://github.com/baotingting01" target="_blank" class="social-btn">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://discord.gg/ancRVhBH" target="_blank" class="social-btn">
+                <i class="fab fa-discord"></i> Discord
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
