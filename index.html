@@ -130,7 +130,11 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 242, 255, 0.1);
         }
-
+<a href="https://debank.com/profile/0xfive" target="_blank" style="text-decoration: none;">
+    <div style="font-size: 0.8rem; color: #888; margin-top: 5px; cursor: pointer; transition: 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#888'">
+        <i class="fa-solid fa-link" style="font-size: 0.7rem;"></i> ON-CHAIN IDENTITY VERIFIED
+    </div>
+</a>
     </style>
 </head>
 <body>
@@ -163,9 +167,29 @@
             </a>
             <a href="https://discord.gg/ancRVhBH" target="_blank" class="social-item">
                 <i class="fab fa-discord"></i> Discord
+                <div style="margin-top: 30px; border-top: 1px solid #333; padding-top: 20px;">
+    <div style="font-size: 0.7rem; color: #666; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">系统访问计数 // SYSTEM ACCESS COUNT</div>
+    <img src="https://count.getloli.com/get/@baotingting01?theme=asoul" alt="Visitor Count" style="height: 30px; filter: grayscale(1) brightness(1.5) drop-shadow(0 0 5px var(--accent-glow));">
+</div>
             </a>
         </div>
     </div>
+<audio id="bgm" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio> <script>
+    const bgm = document.getElementById('bgm');
+    const avatar = document.querySelector('.avatar-ring');
+    let isPlaying = false;
 
+    avatar.style.cursor = 'pointer';
+    avatar.onclick = () => {
+        if (!isPlaying) {
+            bgm.play();
+            avatar.style.boxShadow = "0 0 40px var(--accent-glow)"; // 播放时光芒增强
+        } else {
+            bgm.pause();
+            avatar.style.boxShadow = "0 0 20px rgba(0, 242, 255, 0.3)";
+        }
+        isPlaying = !isPlaying;
+    };
+</script>
 </body>
 </html>
